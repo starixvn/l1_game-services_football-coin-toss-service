@@ -1,36 +1,52 @@
 import mongoose from "mongoose";
 
-const bet = {
-    uid: { type: String, required: true },
-    name: { type: String, required: true },
+interface IBetBase {
+    uid: string;
+    name: string;
 
-    head: { type: Number, default: 0 },
-    tail: { type: Number, default: 0 },
+    betwin: number;
+    time: Date;
+    odds: Object;
 
-    betwin: { type: Number, default: 0 },
-    time: { type: Date },
-    odds: { type: Object },
+    clientSeed: string;
+    siteId: string;
+    freeBet: boolean;
 
-    clientSeed: { type: String, default: "" },
-    siteId: { type: String },
-    freeBet: { type: Boolean, default: false },
+    playerId: string;
+    operatorId?: string;
+    roundId: number;
+    paid: boolean;
+    currency: string;
+    rate: number;
+}
+interface IBet extends IBetBase {
+    head: number;
+    tail: number;
+}
 
-    playerId: { type: String },
-    operatorId: { type: String, required: false },
-    roundId: { type: Number, default: 0, required: true },
-    paid: { type: Boolean, default: false },
-};
+// const betBase = {
+//     uid: { type: String, required: true },
+//     name: { type: String, required: true },
 
-const bets = mongoose.model(
-    "cointoss_bets",
-    new mongoose.Schema({
-        ...bet,
-        currency: { type: String },
-        rate: { type: Number, required: true },
-    })
-);
+//     betwin: { type: Number, default: 0 },
+//     time: { type: Date },
+//     odds: { type: Object },
 
-const tmpBets = mongoose.model("cointoss_tmpbets", new mongoose.Schema(bet));
+//     clientSeed: { type: String, default: "" },
+//     siteId: { type: String },
+//     freeBet: { type: Boolean, default: false },
+
+//     playerId: { type: String },
+//     operatorId: { type: String, required: false },
+//     roundId: { type: Number, default: 0, required: true },
+//     paid: { type: Boolean, default: false },
+// };
+
+const bet = {} as IBet;
+
+const bets = mongoose.model<IBet>("cointoss_bets", new mongoose.Schema(bet));
+
+const tmpBets = mongoose.model<IBet>("cointoss_tmpbets", new mongoose.Schema(bet));
 
 export { bets, tmpBets };
 
