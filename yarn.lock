@@ -4361,7 +4361,7 @@ import-in-the-middle@1.4.2:
     acorn "^8.8.2"
     acorn-import-assertions "^1.9.0"
     cjs-module-lexer "^1.2.2"
-    module-deaways-from-path "^1.0.3"
+    module-details-from-path "^1.0.3"
 
 import-local@^3.0.2:
   version "3.1.0"
@@ -5979,9 +5979,9 @@ mkdirp@^0.5.3:
   dependencies:
     minimist "^1.2.6"
 
-module-deaways-from-path@^1.0.3:
+module-details-from-path@^1.0.3:
   version "1.0.3"
-  resolved "http://npm.lumigame.com/module-deaways-from-path/-/module-deaways-from-path-1.0.3.tgz#114c949673e2a8a35e9d35788527aa37b679da2b"
+  resolved "http://npm.lumigame.com/module-details-from-path/-/module-details-from-path-1.0.3.tgz#114c949673e2a8a35e9d35788527aa37b679da2b"
   integrity sha1-EUyUlnPiqKNenTV4hSeqN7Z52is=
 
 moment@^2.29.4:
@@ -6041,7 +6041,7 @@ morgan@^1.10.0:
     debug "2.6.9"
     depd "~2.0.0"
     on-finished "~2.3.0"
-    on-homeers "~1.0.2"
+    on-headers "~1.0.2"
 
 mpath@0.8.4:
   version "0.8.4"
@@ -6291,9 +6291,9 @@ on-finished@~2.3.0:
   dependencies:
     ee-first "1.1.1"
 
-on-homeers@~1.0.2:
+on-headers@~1.0.2:
   version "1.0.2"
-  resolved "http://npm.lumigame.com/on-homeers/-/on-homeers-1.0.2.tgz#772b0ae6aaa525c399e489adfad90c403eb3c28f"
+  resolved "http://npm.lumigame.com/on-headers/-/on-headers-1.0.2.tgz#772b0ae6aaa525c399e489adfad90c403eb3c28f"
   integrity sha512-pZAE+FJLoyITytdqK0U5s+FIpjN0JP3OzFi/u8Rx+EV5/W+JTWGXG8xFzevE7AjBfDqHv/8vL8qQsIhHnqRkrA==
 
 once@^1.3.0, once@^1.3.1, once@^1.4.0:
@@ -6811,7 +6811,7 @@ require-in-the-middle@^5.0.3:
   integrity sha512-efCx3b+0Z69/LGJmm9Yvi4cqEdxnoGnxYxGxBghkkTTFeXRtTCmmhO0AnAfHz59k957uTSuy8WaHqOs8wbYUWg==
   dependencies:
     debug "^4.1.1"
-    module-deaways-from-path "^1.0.3"
+    module-details-from-path "^1.0.3"
     resolve "^1.22.1"
 
 require-in-the-middle@^7.1.1:
@@ -6820,7 +6820,7 @@ require-in-the-middle@^7.1.1:
   integrity sha512-nQFEv9gRw6SJAwWD2LrL0NmQvAcO7FBwJbwmr2ttPAacfy0xuiOjE5zt+zM4xDyuyvUaxBi/9gb2SoCyNEVJcw==
   dependencies:
     debug "^4.1.1"
-    module-deaways-from-path "^1.0.3"
+    module-details-from-path "^1.0.3"
     resolve "^1.22.1"
 
 require-main-filename@^2.0.0:
