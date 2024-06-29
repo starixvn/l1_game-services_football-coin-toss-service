@@ -8,8 +8,8 @@ const bet = {
 const betModel = { ...BetSchema.betBaseSchema, ...bet };
 const tempBetModel = { ...BetSchema.tempBetBaseSchema, ...bet };
 
-const bets = mongoose.model("cointoss_bets", new mongoose.Schema(betModel));
+const bets = mongoose.model("footballcointoss_bets", new mongoose.Schema(betModel));
 
-const tmpBets = mongoose.model("cointoss_tmpbets", new mongoose.Schema(tempBetModel));
+const tmpBets = mongoose.model("footballcointoss_tmpbets", new mongoose.Schema(tempBetModel));
 
 export { bets, tmpBets };

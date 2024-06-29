@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const modelName = "cointoss_rounds";
+const modelName = "footballcointoss_rounds";
 
 export type Result = {
     home: boolean;

@@ -11,7 +11,7 @@ export default Object.assign(appConfigs, {
     },
     // sentry: {
     //     sentryUrl: "https://3711f3082699411a8716a3221ca1fd9e@sentry.lumigame.com/89",
-    //     logIdentifier: "CoinToss-integration-test",
+    //     logIdentifier: "footballcointoss-integration-test",
     //     env: "DEV",
     // },
     database: {

@@ -23,4 +23,4 @@ const Schema = new mongoose.Schema({
     roundId: { type: Number, default: 0, required: true },
 });
 
-export default mongoose.model("cointoss_betlogs", Schema);
+export default mongoose.model("footballcointoss_betlogs", Schema);

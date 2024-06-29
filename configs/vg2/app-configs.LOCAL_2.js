@@ -33,7 +33,7 @@ export default {
     },
     enabledLogs: true,
     database: {
-        url: "mongodb://lmn_backend:LmnBackend@10.10.50.12:39202,10.10.50.13:39202,10.10.50.14:39202/?replicaSet=L2ppLocal&appName=cointoss",
+        url: "mongodb://lmn_backend:LmnBackend@10.10.50.12:39202,10.10.50.13:39202,10.10.50.14:39202/?replicaSet=L2ppLocal&appName=footballcointoss",
         options: {
             dbName: "minigame",
             useNewUrlParser: true,
@@ -43,7 +43,7 @@ export default {
     },
     sentry: {
         sentryUrl: "https://acb36eb835d948d68c1aad9873754d51@sentry.lumigame.com/27",
-        logIdentifier: "CoinToss",
+        logIdentifier: "footballcointoss",
         env: "LOCAL_2",
     },
     authenticateSettings: {
