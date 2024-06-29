@@ -4,11 +4,11 @@ import { generateSeed } from "sc-pf-client-seed/dist";
 import { generateResult, getSettlementResult } from "../src/helpers/result-helper";
 const chance = new Chance();
 
-const betChoices = ["head", "tail"];
+const betChoices = ["home", "away"];
 
 const odds = {
-    head: 1.96,
-    tail: 1.96,
+    home: 1.96,
+    away: 1.96,
 };
 
 const generateClientSeeds = () => {
@@ -19,26 +19,26 @@ const exportRtpResult = (randomMode = 1, numberOfRuns = 1_000_000, choices = bet
     const current = Date.now();
 
     const resultStat = {
-        head: 0,
-        tail: 0,
+        home: 0,
+        away: 0,
     };
 
     const resultProbability = {
-        head: 0,
-        tail: 0,
+        home: 0,
+        away: 0,
     };
 
     let totalWinAmount = 0;
     let winCount = 0;
     let totalBetAmount = 0;
     const winStreaks = {
-        head: {},
-        tail: {},
+        home: {},
+        away: {},
     };
 
     let winStreaksProbability = {
-        head: {},
-        tail: {},
+        home: {},
+        away: {},
     };
     let curChoice;
     let curStreak = 0;
@@ -79,8 +79,8 @@ const exportRtpResult = (randomMode = 1, numberOfRuns = 1_000_000, choices = bet
             curStreak++;
         }
     }
-    resultProbability.head = resultStat.head / numberOfRuns;
-    resultProbability.tail = resultStat.tail / numberOfRuns;
+    resultProbability.home = resultStat.home / numberOfRuns;
+    resultProbability.away = resultStat.away / numberOfRuns;
     console.log(`randomMode: ${randomMode}`);
     console.log("resultStat");
     console.log(resultStat);

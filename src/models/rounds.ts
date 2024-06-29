@@ -3,14 +3,14 @@ import mongoose from "mongoose";
 const modelName = "cointoss_rounds";
 
 export type Result = {
-    head: boolean;
-    tail: boolean;
+    home: boolean;
+    away: boolean;
 };
 
 const resultSchema = new mongoose.Schema<Result>(
     {
-        head: { type: Boolean, default: false },
-        tail: { type: Boolean, default: false },
+        home: { type: Boolean, default: false },
+        away: { type: Boolean, default: false },
     },
     {
         _id: false,

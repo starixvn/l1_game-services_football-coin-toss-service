@@ -37,7 +37,7 @@ describe("when settle", () => {
                 const timeout = getTimeOutToPlacingBetTime(inGameData.remainingTime, gameSettings.durations) * 1000;
 
                 setTimeout(() => {
-                    client.emit(eventTypes.bet, { betChoice: "head", amount: 100, clientSeed: "1234" });
+                    client.emit(eventTypes.bet, { betChoice: "home", amount: 100, clientSeed: "1234" });
                 }, timeout);
 
                 // Act

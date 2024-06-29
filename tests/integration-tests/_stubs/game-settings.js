@@ -8,8 +8,8 @@ export default {
         placingBets: 20,
         lockingBet: 3,
     },
-    choices: ["head", "tail"],
-    choicesMapper: { head: 1, tail: 2 },
-    hedgeBetGroups: [["head", "tail"]],
+    choices: ["home", "away"],
+    choicesMapper: { home: 1, away: 2 },
+    hedgeBetGroups: [["home", "away"]],
     provablyFair: true,
 };

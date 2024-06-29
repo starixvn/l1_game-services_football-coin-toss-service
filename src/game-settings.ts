@@ -1,8 +1,8 @@
 import { BET_CHOICES } from "./constants";
 
 export default {
-    id: 80,
-    name: "CoinToss",
+    id: 93,
+    name: "FootballCoinToss",
     durations: {
         wholeRound: 29,
         flipTheCoin: 3,

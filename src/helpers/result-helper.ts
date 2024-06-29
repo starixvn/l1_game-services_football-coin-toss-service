@@ -7,7 +7,7 @@ export type FinalSeeds = {
 
 export const generateResult = (finalHash: string) => {
     const result = finalHashToNumber(finalHash) % 2 === 0;
-    return { head: result, tail: !result };
+    return { home: result, away: !result };
 };
 
 const finalHashToNumber = (finalHash: string) => {

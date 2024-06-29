@@ -37,7 +37,7 @@ describe("when place bet", () => {
 
             // Act
             setTimeout(() => {
-                client.emit(eventTypes.bet, { betChoice: "head", amount: 100, clientSeed: "1000" });
+                client.emit(eventTypes.bet, { betChoice: "home", amount: 100, clientSeed: "1000" });
             }, timeout);
 
             // Assert
@@ -58,7 +58,7 @@ describe("when place bet", () => {
 
                 // Act
                 setTimeout(() => {
-                    client.emit(eventTypes.bet, { betChoice: "tail", amount: 100 });
+                    client.emit(eventTypes.bet, { betChoice: "away", amount: 100 });
                 }, timeout);
 
                 // Assert
