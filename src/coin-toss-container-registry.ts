@@ -29,7 +29,7 @@ export default class CoinTossContainerRegistry extends TableContainerRegistry {
             runningRoundInfoPublisher: asClass(RunningRoundInfoPublisher).singleton(),
             placeBetPublisher: asClass(PlaceBetPublisher).singleton(),
             roundResultPublisher: asClass(RoundResultPublisher).singleton(),
-            gameStatusPublisher: asClass(RoundResultPublisher).singleton(),
+            gameStatusPublisher: asClass(GameStatusPublisher).singleton(),
         });
     }
 
