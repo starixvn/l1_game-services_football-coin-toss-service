@@ -10,6 +10,7 @@ export type Result = {
 export type Match = {
     home: string;
     away: string;
+    startTime: String;
 };
 
 const resultSchema = new mongoose.Schema<Result>(
