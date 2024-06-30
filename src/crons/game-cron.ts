@@ -8,7 +8,7 @@ export default class GameCron extends Table.Crons.TableGameCron {
         (this.gameData as GameData).playerBetCount = {};
 
         //TODO map with time
-        const match = MatchConfig.matches.pop();
+        const match = MatchConfig.matches[0];
         (this.gameData as GameData).match = { home: match?.home, away: match?.away };
     }
 }
