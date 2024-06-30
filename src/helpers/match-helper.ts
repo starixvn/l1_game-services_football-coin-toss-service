@@ -1,5 +1,14 @@
 import moment, { Moment, MomentInput } from "moment";
 import { Match } from "../models/rounds";
+import mongoose from "mongoose";
+
+export default class MatchHelper {
+    matchRepository: mongoose.Model<Match>;
+
+    constructor(matchRepository: mongoose.Model<Match>) {
+        this.matchRepository = matchRepository;
+    }
+}
 
 export const calculateEndTime = (startTime: Moment) => {
     return startTime.clone().add(120, "minutes");
@@ -29,7 +38,6 @@ export const getNextMatch = (matches: Array<Match>) => {
 
     const matchesWithStatus = matches.map((match) => ({
         ...match,
-        //endTime: calculateEndTime(moment(match.startTime as MomentInput)),
         status: getMatchStatus(moment(match.startTime as MomentInput), now),
     }));
 

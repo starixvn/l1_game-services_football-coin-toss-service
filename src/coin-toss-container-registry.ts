@@ -3,10 +3,17 @@ import { Table } from "sc-game-base";
 import { PlaceBetPublisher } from "sc-game-base/src/core/event-publishers";
 import { TableContainerRegistry } from "sc-game-base/src/table";
 import { Bot, GameCron, ProcessBetQueue } from "./crons";
-import { InGameConsumer, OutGameConsumer, UserSignInConsumer, PlaceBetConsumer, SettleGameRoundConsumer } from "./event-consumers";
+import {
+    InGameConsumer,
+    OutGameConsumer,
+    UserSignInConsumer,
+    PlaceBetConsumer,
+    SettleGameRoundConsumer,
+    RoundResultConsumer,
+} from "./event-consumers";
 import { RoundResultPublisher, RunningRoundInfoPublisher, GameStatusPublisher } from "./event-publishers";
 import GameData from "./game-data";
-import { betLogs, bets, results, rounds, tmpBets } from "./models/index";
+import { betLogs, bets, matches, results, rounds, tmpBets } from "./models/index";
 import { RoundQuery } from "./query-apis";
 
 export default class CoinTossContainerRegistry extends TableContainerRegistry {
@@ -43,6 +50,7 @@ export default class CoinTossContainerRegistry extends TableContainerRegistry {
             tempBetsRepository: asValue(tmpBets),
             betLogsRepository: asValue(betLogs),
             resultsRepository: asValue(results),
+            matchRepository: asValue(matches),
         });
     }
 
@@ -55,6 +63,7 @@ export default class CoinTossContainerRegistry extends TableContainerRegistry {
             userSignInConsumer: asClass(UserSignInConsumer).singleton(),
             placeBetConsumer: asClass(PlaceBetConsumer).singleton(),
             settleGameRoundConsumer: asClass(SettleGameRoundConsumer).singleton().proxy(),
+            roundResultConsumer: asClass(RoundResultConsumer).singleton(),
         });
     }
 
