@@ -7,6 +7,7 @@ import { InGameConsumer, OutGameConsumer, UserSignInConsumer, PlaceBetConsumer, 
 import { RoundResultPublisher, RunningRoundInfoPublisher, GameStatusPublisher } from "./event-publishers";
 import GameData from "./game-data";
 import { betLogs, bets, results, rounds, tmpBets } from "./models/index";
+import { RoundQuery } from "./query-apis";
 
 export default class CoinTossContainerRegistry extends TableContainerRegistry {
     register(appConfigs: any, definition: Table.TableGameDefinition, gameData: GameData): AwilixContainer<any> {
@@ -64,6 +65,14 @@ export default class CoinTossContainerRegistry extends TableContainerRegistry {
             bot: asClass(Bot).singleton(),
             gameCron: asClass(GameCron).singleton().proxy(),
             processBetQueue: asClass(ProcessBetQueue).singleton().proxy(),
+        });
+    }
+
+    registerApis() {
+        super.registerApis();
+
+        this.container.register({
+            roundQuery: asClass(RoundQuery).singleton(),
         });
     }
 }
