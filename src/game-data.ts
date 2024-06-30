@@ -6,4 +6,5 @@ export default class GameData extends GameDataBase {
         this.playerBetCount = {};
     }
     playerBetCount: Record<string, string[]> = {};
+    match: any = {}; //TODO define type later
 }
