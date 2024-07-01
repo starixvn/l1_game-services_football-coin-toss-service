@@ -29,7 +29,8 @@ export const getMatchStatus = (startTime: Moment, current: Moment) => {
 };
 
 export const getNextMatch = (matches: Array<Match>) => {
-    const defaultMatch = { home: "", away: "" };
+    const defaultMatch = { home: "home", away: "away" };
+
     if (matches.length === 0) {
         return defaultMatch;
     }
