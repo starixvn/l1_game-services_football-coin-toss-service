@@ -19,12 +19,10 @@ export default class RoundResultConsumer extends RoundResultConsumerBase {
         this.matchRepository = matchRepository;
     }
 
-    async getMatchList(): Promise<Match[]> {
-        const matchList = await this.matchRepository
+    getMatchList(): Promise<Match[]> {
+        return this.matchRepository
             .find({}, {}, { sort: { startTime: 1 } })
             .lean()
             .exec();
-
-        return matchList;
     }
 }
