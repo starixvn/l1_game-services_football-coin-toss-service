@@ -74,7 +74,7 @@ describe("Match Helper", () => {
             const nextMatch = getNextMatch(matches);
 
             // Assert
-            expect(nextMatch).toEqual({ home: "home", away: "away" });
+            expect(nextMatch).toEqual({ home: "home", away: "away", startTime: "" });
         });
 
         describe("when have in-progress match", () => {

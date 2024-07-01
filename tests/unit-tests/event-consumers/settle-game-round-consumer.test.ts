@@ -35,7 +35,6 @@ describe("SettleGameRoundConsumer", () => {
     const definition = new TableGameDefinition(gameSettings, mockGenerateResult, mockSettle, mockGenerateHash);
     const gameData = new GameData(0);
     gameData.exchangeRates = { exId: 1, time: "", source: "", code: {} };
-
     const mockSettleBets = jest.fn();
 
     beforeEach(() => {
@@ -56,36 +55,97 @@ describe("SettleGameRoundConsumer", () => {
         consumer.settleBets = mockSettleBets;
     });
 
-    it("should generate result and settle", async () => {
-        // Arrange
+    describe("settleRound", () => {
         const result = { home: true, away: false };
         const match = { home: "ENG", away: "SVK", startTime: "" };
-        gameData.match = match;
-        mockGenerateResult.mockReturnValueOnce(result);
-        mockSettle.mockReturnValueOnce(result);
-        const newRound = {
-            id: 2,
-            time: new Date(),
-            result: result,
-            settlementResult: result,
-            match,
-        };
-        roundsRepository.create.mockReturnValueOnce(newRound);
-        mockSettleBets.mockImplementationOnce(() => {});
 
-        // Act
-        await consumer.settleRound();
+        beforeEach(() => {
+            gameData.match = match;
+            mockGenerateResult.mockReturnValueOnce(result);
+            mockSettle.mockReturnValueOnce(result);
+        });
 
-        // Assert
-        expect(consumer.generateResult).toHaveBeenCalled();
-        expect(consumer.definition.settle).toHaveBeenCalledWith(result);
-        expect(roundsRepository.create).toHaveBeenCalledWith({
-            id: 1,
-            result: result,
-            settlementResult: result,
-            time: mockDate,
-            exchangeRateId: 1,
-            match: match,
+        it("always generate result", async () => {
+            // Arrange
+            roundsRepository.create.mockReturnValueOnce({});
+            mockSettleBets.mockImplementationOnce(() => {});
+
+            // Act
+            await consumer.settleRound();
+
+            // Assert
+            expect(consumer.generateResult).toHaveBeenCalled();
+        });
+
+        it("always call settle with generated result", async () => {
+            // Arrange
+            roundsRepository.create.mockReturnValueOnce({});
+            mockSettleBets.mockImplementationOnce(() => {});
+
+            // Act
+            await consumer.settleRound();
+
+            // Assert
+            expect(consumer.definition.settle).toHaveBeenCalledWith(result);
+        });
+
+        it("always insert new round with correct value", async () => {
+            // Arrange
+            const newRound = {
+                id: 2,
+                time: new Date(),
+                result: result,
+                settlementResult: result,
+                match,
+            };
+            roundsRepository.create.mockReturnValueOnce(newRound);
+            mockSettleBets.mockImplementationOnce(() => {});
+
+            // Act
+            await consumer.settleRound();
+
+            // Assert
+            expect(roundsRepository.create).toHaveBeenCalledWith({
+                id: 1,
+                result: result,
+                settlementResult: result,
+                time: mockDate,
+                exchangeRateId: 1,
+                match: match,
+            });
+        });
+
+        describe("when new round is created", () => {
+            const newRound = {
+                id: 2,
+                time: new Date(),
+                result: result,
+                settlementResult: result,
+                match,
+            };
+
+            beforeEach(() => {
+                consumer.collectRoundResult = jest.fn().mockReturnValueOnce({ result: result, settlementResult: result });
+                roundsRepository.create.mockResolvedValue(newRound);
+            });
+
+            it("should publish round result and winners ", async () => {
+                // Arrange
+
+                // Act
+                await consumer.settleRound();
+
+                // Assert
+                expect(consumer.roundResultPublisher.publishRoundResult).toHaveBeenCalledWith({ result: result, settlementResult: result });
+                expect(mockSettleBets).toHaveBeenCalledWith({
+                    settlementResult: result,
+                    result: result,
+                    roundId: 2,
+                    time: newRound.time,
+                });
+                expect(consumer.roundResultPublisher.publishWinners).toHaveBeenCalledWith(1, {});
+                expect(consumer.gameData.roundId).toBe(3);
+            });
         });
     });
 });

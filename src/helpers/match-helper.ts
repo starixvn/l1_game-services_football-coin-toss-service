@@ -10,11 +10,11 @@ export default class MatchHelper {
     }
 }
 
-export const calculateEndTime = (startTime: Moment) => {
+export const calculateEndTime = (startTime: Moment): Moment => {
     return startTime.clone().add(120, "minutes");
 };
 
-export const getMatchStatus = (startTime: Moment, current: Moment) => {
+export const getMatchStatus = (startTime: Moment, current: Moment): string => {
     const matchEndTime = calculateEndTime(startTime);
 
     if (current.isBetween(startTime, matchEndTime, undefined, "[]")) {
@@ -28,8 +28,8 @@ export const getMatchStatus = (startTime: Moment, current: Moment) => {
     return "past";
 };
 
-export const getNextMatch = (matches: Array<Match>) => {
-    const defaultMatch = { home: "home", away: "away" };
+export const getNextMatch = (matches: Array<Match>): Match => {
+    const defaultMatch = { home: "home", away: "away", startTime: "" };
 
     if (matches.length === 0) {
         return defaultMatch;
