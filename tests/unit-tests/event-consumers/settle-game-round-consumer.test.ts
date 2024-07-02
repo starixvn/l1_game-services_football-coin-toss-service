@@ -1,40 +1,30 @@
-// @ts-ignore
-import { stubMongoose, stub } from "jest-micro-auto-stub";
-import mongoose from "mongoose";
 import { SettleGameRoundConsumer } from "../../../src/event-consumers";
-import GameManagementApiClientFactory from "sc-game-base/src/core/game-management-api";
-import { RoundResultPublisher, UserBetResultPublisher } from "sc-game-base/src/core/event-publishers";
 import { TableGameDefinition } from "sc-game-base/src/table";
 import gameSettings from "../../../src/game-settings";
 import GameData from "../../../src/game-data";
 
-jest.mock("sc-game-management-client");
+import {
+    roundResultPublisher,
+    userBetResultPublisher,
+    endGame,
+    roundsRepository,
+    betsRepository,
+    tempBetsRepository,
+    gameManagementApiClientFactory,
+} from "./global-stubs.test";
 
 describe("SettleGameRoundConsumer", () => {
     let consumer: SettleGameRoundConsumer;
-    /** @type {UserRoundResultPublisher}*/
-    const roundResultPublisher = stub(RoundResultPublisher);
-
-    /** @type {UserBetResultPublisher}*/
-    const userBetResultPublisher = stub(UserBetResultPublisher);
-
-    /** @type {mongoose.Model}*/
-    const roundsRepository = stubMongoose(mongoose.Model);
-    /** @type {mongoose.Model}*/
-    const betsRepository = stubMongoose(mongoose.Model);
-    /** @type {mongoose.Model}*/
-    const tempBetsRepository = stubMongoose(mongoose.Model);
 
     const mockDate = new Date();
-    const endGame = jest.fn();
-    const gameManagementApiClientFactory = new GameManagementApiClientFactory({});
+
     const mockGenerateResult = jest.fn();
     const mockSettle = jest.fn();
     const mockGenerateHash = jest.fn();
 
     const definition = new TableGameDefinition(gameSettings, mockGenerateResult, mockSettle, mockGenerateHash);
     const gameData = new GameData(0);
-    gameData.exchangeRates = { exId: 1, time: "", source: "", code: {} };
+
     const mockSettleBets = jest.fn();
 
     beforeEach(() => {
@@ -55,11 +45,17 @@ describe("SettleGameRoundConsumer", () => {
         consumer.settleBets = mockSettleBets;
     });
 
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
+
     describe("settleRound", () => {
         const result = { home: true, away: false };
         const match = { home: "ENG", away: "SVK", startTime: "" };
 
         beforeEach(() => {
+            gameData.exchangeRates = { exId: 1, time: "", source: "", code: {} };
+            gameData.roundId = 1;
             gameData.match = match;
             mockGenerateResult.mockReturnValueOnce(result);
             mockSettle.mockReturnValueOnce(result);
