@@ -2604,6 +2604,14 @@ atob@^2.1.2:
   resolved "http://npm.lumigame.com/atob/-/atob-2.1.2.tgz"
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
 
+awilix@8.0.0:
+  version "8.0.0"
+  resolved "http://npm.lumigame.com/awilix/-/awilix-8.0.0.tgz#556fa20e0f7b52b39479ed6b027ee054efd8f16a"
+  integrity sha512-9y4ejNj2nLu7ET8jtQPiI3Ibvu68iKcLbLy5pGsPy9HWWVyQhTT8YE+Ao7ZawTNXRWjosSy/r4QNmhaUt/ju0A==
+  dependencies:
+    camel-case "^4.1.2"
+    fast-glob "^3.2.12"
+
 awilix@^8.0.0:
   version "8.0.1"
   resolved "http://npm.lumigame.com/awilix/-/awilix-8.0.1.tgz"
