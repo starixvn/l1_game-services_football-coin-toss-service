@@ -11,7 +11,7 @@ import {
     betsRepository,
     tempBetsRepository,
     gameManagementApiClientFactory,
-} from "./global-stubs.test";
+} from "./global-stubs";
 
 describe("SettleGameRoundConsumer", () => {
     let consumer: SettleGameRoundConsumer;
