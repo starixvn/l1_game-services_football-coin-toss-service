@@ -20,12 +20,12 @@ const gameConfig = {
     name: gameSetting.name.toLowerCase(),
     minBet: 1,
     maxBet: 3000,
-    maxBetPerChoices: { head: 3000, tail: 3000 },
-    odds: { head: 2, tail: 2 },
+    maxBetPerChoices: { home: 3000, away: 3000 },
+    odds: { home: 2, away: 2 },
     botenabled: false,
     hour_maxbot: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     bot_maxbet: 1000,
-    choices_maxbet: { head: 3000, tail: 3000 },
+    choices_maxbet: { home: 3000, away: 3000 },
 };
 
 const tempRoundResult = [
@@ -185,4 +185,3 @@ const promotions = [
 ];
 
 export { currencyData, game, gameConfig, pfResults, promotions, roundsData, socketOptionsFunc, userBetData, userBetLogData };
-

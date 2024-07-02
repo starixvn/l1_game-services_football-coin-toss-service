@@ -3,10 +3,18 @@ import { Table } from "sc-game-base";
 import { PlaceBetPublisher } from "sc-game-base/src/core/event-publishers";
 import { TableContainerRegistry } from "sc-game-base/src/table";
 import { Bot, GameCron, ProcessBetQueue } from "./crons";
-import { InGameConsumer, OutGameConsumer, UserSignInConsumer } from "./event-consumers";
-import { RoundResultPublisher, RunningRoundInfoPublisher } from "./event-publishers";
+import {
+    InGameConsumer,
+    OutGameConsumer,
+    UserSignInConsumer,
+    PlaceBetConsumer,
+    SettleGameRoundConsumer,
+    RoundResultConsumer,
+} from "./event-consumers";
+import { RoundResultPublisher, RunningRoundInfoPublisher, GameStatusPublisher } from "./event-publishers";
 import GameData from "./game-data";
-import { betLogs, bets, results, rounds, tmpBets } from "./models/index";
+import { betLogs, bets, matches, results, rounds, tmpBets } from "./models/index";
+import { RoundQuery } from "./query-apis";
 
 export default class CoinTossContainerRegistry extends TableContainerRegistry {
     register(appConfigs: any, definition: Table.TableGameDefinition, gameData: GameData): AwilixContainer<any> {
@@ -29,6 +37,7 @@ export default class CoinTossContainerRegistry extends TableContainerRegistry {
             runningRoundInfoPublisher: asClass(RunningRoundInfoPublisher).singleton(),
             placeBetPublisher: asClass(PlaceBetPublisher).singleton(),
             roundResultPublisher: asClass(RoundResultPublisher).singleton(),
+            gameStatusPublisher: asClass(GameStatusPublisher).singleton(),
         });
     }
 
@@ -41,6 +50,7 @@ export default class CoinTossContainerRegistry extends TableContainerRegistry {
             tempBetsRepository: asValue(tmpBets),
             betLogsRepository: asValue(betLogs),
             resultsRepository: asValue(results),
+            matchRepository: asValue(matches),
         });
     }
 
@@ -51,6 +61,9 @@ export default class CoinTossContainerRegistry extends TableContainerRegistry {
             inGameConsumer: asClass(InGameConsumer).singleton(),
             userDisconnectConsumer: asClass(OutGameConsumer).singleton(),
             userSignInConsumer: asClass(UserSignInConsumer).singleton(),
+            placeBetConsumer: asClass(PlaceBetConsumer).singleton(),
+            settleGameRoundConsumer: asClass(SettleGameRoundConsumer).singleton().proxy(),
+            roundResultConsumer: asClass(RoundResultConsumer).singleton(),
         });
     }
 
@@ -61,6 +74,14 @@ export default class CoinTossContainerRegistry extends TableContainerRegistry {
             bot: asClass(Bot).singleton(),
             gameCron: asClass(GameCron).singleton().proxy(),
             processBetQueue: asClass(ProcessBetQueue).singleton().proxy(),
+        });
+    }
+
+    registerApis() {
+        super.registerApis();
+
+        this.container.register({
+            roundQuery: asClass(RoundQuery).singleton(),
         });
     }
 }

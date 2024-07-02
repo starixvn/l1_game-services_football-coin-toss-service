@@ -35,7 +35,8 @@ describe("when getPfInfo", () => {
             roundId: 1,
             drawId: 8,
             serverSeedHash: "e555dc6bd3d9b819377537887e93288add86d66dd0399e9aef3fdadf1e8e19ff",
-            serverSeed: '{"random":"62","remain":"1:2:3:4:5:6:7:8:9:10:11:12:13:14:15:17:18:19:20:21:22:24:25:26:27:28:29:30:31:32:33:35:36:37:38:39:40:42:43:44:45:46:47:49:50:52:53:54:55:56:57:58:60:61:62:63:64:65:66:67:68:69:70:71:72:73:74:75","secret":"kpcNFFkcCAEf4A$]c([SMokdheG0mGsm"}',
+            serverSeed:
+                '{"random":"62","remain":"1:2:3:4:5:6:7:8:9:10:11:12:13:14:15:17:18:19:20:21:22:24:25:26:27:28:29:30:31:32:33:35:36:37:38:39:40:42:43:44:45:46:47:49:50:52:53:54:55:56:57:58:60:61:62:63:64:65:66:67:68:69:70:71:72:73:74:75","secret":"kpcNFFkcCAEf4A$]c([SMokdheG0mGsm"}',
             encryptedServerSeed: {
                 iv: "7f7ab9d4ca5488e642c6031e505e7e56",
                 content:
@@ -49,11 +50,11 @@ describe("when getPfInfo", () => {
         };
 
         // Act
-        const actual = await client.handleGameEvent((data) => data.clientSeedDetail);
+        const actual = await client.handleGameEvent((data) => data.clientSeedDeaway);
 
         // Assert
         expect(actual.pfResult.serverSeedHash).toEqual(pfInfo.serverSeedHash);
         expect(JSON.stringify(actual.pfResult.serverSeed)).toEqual(JSON.stringify(pfInfo.serverSeed));
-        expect(actual.clientSeedDetail).toEqual({});
+        expect(actual.clientSeedDeaway).toEqual({});
     });
 });

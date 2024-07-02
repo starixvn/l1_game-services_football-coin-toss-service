@@ -2,15 +2,14 @@ import mongoose from "mongoose";
 import { BetSchema } from "sc-game-base/src/core/models";
 
 const bet = {
-    head: { type: Number, default: 0 },
-    tail: { type: Number, default: 0 },
+    home: { type: Number, default: 0 },
+    away: { type: Number, default: 0 },
 };
 const betModel = { ...BetSchema.betBaseSchema, ...bet };
 const tempBetModel = { ...BetSchema.tempBetBaseSchema, ...bet };
 
-const bets = mongoose.model("cointoss_bets", new mongoose.Schema(betModel));
+const bets = mongoose.model("footballcointoss_bets", new mongoose.Schema(betModel));
 
-const tmpBets = mongoose.model("cointoss_tmpbets", new mongoose.Schema(tempBetModel));
+const tmpBets = mongoose.model("footballcointoss_tmpbets", new mongoose.Schema(tempBetModel));
 
 export { bets, tmpBets };
-

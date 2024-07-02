@@ -1,16 +1,16 @@
 import { BET_CHOICES } from "../constants";
 
 export const roundUserBetPercentage = (percentage: Record<string, number>) => {
-    if (!percentage[BET_CHOICES.head] && !percentage[BET_CHOICES.tail]) {
-        percentage[BET_CHOICES.head] = 0;
-        percentage[BET_CHOICES.tail] = 0;
+    if (!percentage[BET_CHOICES.home] && !percentage[BET_CHOICES.away]) {
+        percentage[BET_CHOICES.home] = 0;
+        percentage[BET_CHOICES.away] = 0;
     } else {
-        percentage[BET_CHOICES.head] && (percentage[BET_CHOICES.head] = parseInt(percentage[BET_CHOICES.head].toString()));
-        percentage[BET_CHOICES.tail] && (percentage[BET_CHOICES.tail] = parseInt(percentage[BET_CHOICES.tail].toString()));
-        if (percentage[BET_CHOICES.head] > 0) {
-            percentage[BET_CHOICES.tail] = 100 - (percentage[BET_CHOICES.head] ?? 0);
+        percentage[BET_CHOICES.home] && (percentage[BET_CHOICES.home] = parseInt(percentage[BET_CHOICES.home].toString()));
+        percentage[BET_CHOICES.away] && (percentage[BET_CHOICES.away] = parseInt(percentage[BET_CHOICES.away].toString()));
+        if (percentage[BET_CHOICES.home] > 0) {
+            percentage[BET_CHOICES.away] = 100 - (percentage[BET_CHOICES.home] ?? 0);
         } else {
-            percentage[BET_CHOICES.head] = 100 - (percentage[BET_CHOICES.tail] ?? 0);
+            percentage[BET_CHOICES.home] = 100 - (percentage[BET_CHOICES.away] ?? 0);
         }
     }
 

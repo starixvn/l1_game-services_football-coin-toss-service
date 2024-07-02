@@ -29,17 +29,17 @@ describe("InGameConsumer test", () => {
 
         (helper.betPercentage.calculateUserBetPercentage as jest.Mock).mockReturnValue({
             percentage: {
-                head: 66.6,
-                tail: 33.3,
+                home: 66.6,
+                away: 33.3,
             },
         });
 
         it("should return correct", () => {
             // act
-            const actual = consumer.getUserBetPercentage({ head: ["111", "113"], tail: ["112"] });
+            const actual = consumer.getUserBetPercentage({ home: ["111", "113"], away: ["112"] });
 
             // assert
-            expect(actual).toStrictEqual({ head: 66, tail: 34 });
+            expect(actual).toStrictEqual({ home: 66, away: 34 });
         });
     });
 });

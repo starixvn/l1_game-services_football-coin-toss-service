@@ -1,16 +1,32 @@
 import mongoose from "mongoose";
 
-const modelName = "cointoss_rounds";
+const modelName = "footballcointoss_rounds";
 
 export type Result = {
-    head: boolean;
-    tail: boolean;
+    home: boolean;
+    away: boolean;
+};
+
+export type Match = {
+    home: string;
+    away: string;
+    startTime: string;
 };
 
 const resultSchema = new mongoose.Schema<Result>(
     {
-        head: { type: Boolean, default: false },
-        tail: { type: Boolean, default: false },
+        home: { type: Boolean, default: false },
+        away: { type: Boolean, default: false },
+    },
+    {
+        _id: false,
+    }
+);
+
+const matchSchema = new mongoose.Schema<Match>(
+    {
+        home: { type: String },
+        away: { type: String },
     },
     {
         _id: false,
@@ -23,6 +39,7 @@ const Schema = new mongoose.Schema({
     settlementResult: { type: resultSchema },
     time: { type: Date, default: new Date() },
     exchangeRateId: { type: Number, require: true },
+    match: { type: matchSchema },
 });
 
 export default mongoose.model(modelName, Schema);

@@ -1,8 +1,22 @@
-import { TableUserSignInConsumer } from "sc-game-base/src/table/event-consumers";
-import { TableUserSignInPublisher } from "sc-game-base/src/table/event-publishers";
+import { Core, Table } from "sc-game-base";
 import { UserInfos } from "sc-game-management-client";
 import { Socket } from "socket.io";
-export default class UserSignInConsumer extends TableUserSignInConsumer {
+
+export default class UserSignInConsumer extends Core.BaseEventConsumers.UserSignInConsumer {
+    constructor(
+        definition: Table.TableGameDefinition,
+        gameData: Table.TableGameData,
+        userSignInPublisher: Table.EventPublishers.TableUserSignInPublisher,
+        playGamePermissionValidator: any,
+        appConfigs: Object,
+        gameManagementApiClientFactory: any
+    ) {
+        super(gameData, userSignInPublisher, playGamePermissionValidator, appConfigs, gameManagementApiClientFactory);
+
+        this.definition = definition;
+    }
+
+    definition: Table.TableGameDefinition;
 
     handleSignInSuccess(socketClient: Socket, userInfo: UserInfos, userSession: any) {
         const userData = {
@@ -18,7 +32,10 @@ export default class UserSignInConsumer extends TableUserSignInConsumer {
         socketClient.emit("signedIn");
 
         if (this.isEnable()) {
-            (this.userSignInPublisher as TableUserSignInPublisher).publishToGameMessage(socketClient, this.definition.name);
+            (this.userSignInPublisher as Table.EventPublishers.TableUserSignInPublisher).publishToGameMessage(
+                socketClient,
+                this.definition.name
+            );
         }
     }
 

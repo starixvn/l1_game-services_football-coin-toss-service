@@ -1,8 +1,8 @@
 import { BET_CHOICES } from "./constants";
 
 export default {
-    id: 80,
-    name: "CoinToss",
+    id: 93,
+    name: "FootballCoinToss",
     durations: {
         wholeRound: 29,
         flipTheCoin: 3,
@@ -10,13 +10,13 @@ export default {
         lockingBet: 3,
     },
     choices: Object.values(BET_CHOICES),
-    choicesMapper: { head: 1, tail: 2 },
-    hedgeBetGroups: [[BET_CHOICES.head, BET_CHOICES.tail]],
+    choicesMapper: { home: 1, away: 2 },
+    hedgeBetGroups: [[BET_CHOICES.home, BET_CHOICES.away]],
     numberOfRoundHistory: 100,
     provablyFair: true,
     botSettings: {
-        ratio: { headOption: 50, tailOption: 50 },
-        headOption: [BET_CHOICES.head],
-        tailOption: [BET_CHOICES.tail],
+        ratio: { homeOption: 50, awayOption: 50 },
+        homeOption: [BET_CHOICES.home],
+        awayOption: [BET_CHOICES.away],
     },
 };
