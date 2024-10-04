@@ -18,4 +18,19 @@ export default class RoundQuery extends RoundQueryBase {
             };
         });
     }
+
+    override async getRoundPF(id: number) {
+        const round = await this.getOne(id);
+        const pfResult = await this.resultsRepository.findOne({ roundId: id }, { _id: false, time: false, _v: false }).lean().exec();
+
+        return {
+            roundPFResult: pfResult
+                ? {
+                      roundId: pfResult.roundId,
+                      serverSeedHash: pfResult.serverSeedHash,
+                      ...(round && { result: round.result, match: round.match, ...pfResult }),
+                  }
+                : null,
+        };
+    }
 }
