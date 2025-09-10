@@ -29,7 +29,6 @@
         "awilix": "8.0.0",
         "extensionless": "1.9.6",
         "moment": "2.30.1",
-        "mongoose": "5.13.22",
         "sc-game-base": "5.4.1-beta.0"
     },
     "resolutions": {
