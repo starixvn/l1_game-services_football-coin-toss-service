@@ -32,6 +32,12 @@
         "mongoose": "5.13.22",
         "sc-game-base": "5.4.1-beta.0"
     },
+    "resolutions": {
+        "sc-game-base": "4.0.0",
+        "mongoose": "6.13.6",
+        "form-data": "4.0.4",
+        "sc-common": "2.0.0"
+    },
     "devDependencies": {
         "@babel/preset-env": "^7.23.9",
         "@commitlint/cli": "^18.6.0",
