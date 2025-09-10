@@ -8,6 +8,7 @@ const Schema = new mongoose.Schema<Match>(
     {
         home: { type: String },
         away: { type: String },
+        // @ts-ignore
         startTime: { type: Date },
     },
     {
