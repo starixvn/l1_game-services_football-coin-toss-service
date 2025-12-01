@@ -29,10 +29,10 @@
         "awilix": "8.0.0",
         "extensionless": "1.9.6",
         "moment": "2.30.1",
-        "sc-game-base": "5.4.1-beta.0"
+        "sc-game-base": "5.4.1-hotdog-1"
     },
     "resolutions": {
-        "sc-game-base": "4.0.0",
+        "sc-game-base": "5.4.1-hotdog-1",
         "mongoose": "6.13.6",
         "form-data": "4.0.4",
         "sc-common": "2.0.0"
